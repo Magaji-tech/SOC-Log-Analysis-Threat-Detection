@@ -64,15 +64,65 @@ Limitations
 
 Repeated failed login attempts do not automatically confirm a brute-force attack. Findings must be evaluated against the available evidence and the context of the environment.
 
+
+ Investigation Results
+
+This project demonstrates a structured approach to investigating suspicious authentication activity using simulated Linux authentication logs.
+
+Key Findings
+
+- Total authentication events: 10
+- Failed login attempts: 7
+- Successful login events: 3
+- Suspicious source IP: "192.168.1.50"
+- Accounts targeted: "test", "admin", and "root"
+
+Threat Assessment
+
+Repeated authentication failures from a single source IP targeting multiple usernames may indicate password guessing or brute-force activity.
+
+The available evidence warrants further investigation but does not independently confirm a successful attack or account compromise.
+
+Recommended Security Controls
+
+1. Enable multi-factor authentication (MFA).
+2. Monitor repeated authentication failures.
+3. Configure alerts for suspicious login patterns.
+4. Review privileged account activity.
+5. Apply appropriate rate limiting and account protection policies.
+6. Investigate suspicious source IP addresses.
+
+ Project Documentation
+
+The repository includes documentation covering:
+
+- SOC investigation methodology
+- Authentication-log analysis
+- Incident investigation report
+- Threat assessment and defensive recommendations
+
+Incident Report: "reports/incident_report.md"
+
+ Skills Demonstrated
+
+- Security Operations Center (SOC) fundamentals
+- Linux security-log analysis
+- Authentication-event investigation
+- Suspicious activity detection
+- Incident response documentation
+- Threat assessment
+- Defensive security controls
+- Technical reporting
+
 Disclaimer
 
-This project is intended for educational and defensive cybersecurity purposes. All testing should use simulated data or systems and logs that the investigator is authorized to access.
+This project uses simulated authentication logs for educational purposes. The findings demonstrate an investigation methodology and do not represent a confirmed real-world security incident.
 
-Author
 
-Magaji Abubakar M.
+Author: Magaji Abubakar Muhammad
 
-Aspiring Cybersecurity Professional | SOC Analyst in Training
+Focus: Cybersecurity | SOC Analysis | Threat Detection | Incident Response
+
 
 GitHub: https://github.com/Magaji-tech/
 
