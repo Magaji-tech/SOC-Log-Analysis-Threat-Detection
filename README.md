@@ -47,7 +47,8 @@ Configured detection threshold| 3
 
 Execution Evidence
 
-The screenshot below shows the Python analyzer running against the simulated SSH authentication logs in the Kali Linux lab. ![SOC authentication analysis execution evidence] (evidence/SOC-authentication-analysis.png)
+The screenshot below shows the Python analyzer running against the simulated SSH authentication logs in the Kali Linux lab. 
+![SOC authentication analysis execution evidence] evidence/SOC-authentication-analysis.png
 
 Expected detection: The "test" account from "192.168.1.50" triggers the repeated-failed-login alert.
 
