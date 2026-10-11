@@ -2,7 +2,7 @@ import re
 from collections import Counter
 from pathlib import Path
 
-LOG_FILE = Path("logs/sample_auth.log")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent LOG_FILE = PROJECT_ROOT / "logs" / "sample_auth.log"
 FAILED_THRESHOLD = 3
 
 PATTERN = re.compile(
