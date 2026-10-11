@@ -45,10 +45,6 @@ Successful login events| 3
 Failed attempts for "test" from "192.168.1.50"| 3
 Configured detection threshold| 3
 
-Execution Evidence
-
-The screenshot below shows the Python analyzer running against the simulated SSH authentication logs in the Kali Linux lab. 
-
 Expected detection: The "test" account from "192.168.1.50" triggers the repeated-failed-login alert.
 
 These results come from a controlled, simulated lab dataset and are not evidence of activity on a production network.
@@ -138,6 +134,11 @@ Future Improvements
 - Improve error handling for malformed log entries and missing files.
 - Capture genuine lab execution evidence.
 - Validate the SPL queries against a configured Splunk lab.
+
+
+Execution Evidence
+
+The screenshot below shows the Python analyzer running against the simulated SSH authentication logs in the Kali Linux lab. 
 
 
 Author:
