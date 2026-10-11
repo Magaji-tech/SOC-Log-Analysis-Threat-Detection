@@ -139,7 +139,7 @@ Future Improvements
 Execution Evidence
 
 The screenshot below shows the Python analyzer running against the simulated SSH authentication logs in the Kali Linux lab. 
-"SOC authentication analysis execution evidence" (SOC-Log-Analysis-Threat-Detection/blob/main/evidence/SOC-authentication-analysis.png)
+![SOC authentication analysis execution evidence](evidence/SOC-authentication-analysis.png)
 
 
 Author:
