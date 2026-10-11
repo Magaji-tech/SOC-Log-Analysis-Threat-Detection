@@ -1,131 +1,237 @@
-# SOC-Log-Analysis-Threat-Detection
-A hands-on SOC analysis lab demonstrating security log analysis, suspicious authentication detection, incident  investigation, and defensive security recommendation.
 SOC Log Analysis & Threat Detection
+
+A hands-on Security Operations Center (SOC) project focused on authentication log analysis, repeated failed-login detection, and incident documentation.
 
 Project Overview
 
-This project demonstrates a practical Security Operations Center (SOC) investigation using authentication logs to identify suspicious login activity.
+This project demonstrates a basic SOC investigation workflow using simulated Linux SSH authentication logs. It combines Python-based log analysis, Splunk detection queries, structured testing, and incident reporting to identify potentially suspicious login activity.
 
-The lab focuses on security event analysis, failed-login detection, incident investigation, and defensive security recommendations.
-
-Note: The initial investigation uses simulated security events for educational purposes.
+The project is designed to demonstrate foundational skills in security monitoring, detection engineering, log analysis, and incident response.
 
 Objectives
 
-- Analyze authentication logs.
-- Identify repeated failed login attempts.
-- Investigate suspicious login patterns.
-- Develop detection queries using Splunk.
-- Document findings in a professional incident report.
+- Analyze authentication logs to identify failed and successful login attempts.
+- Detect repeated failed logins using a configurable threshold.
+- Group failed-login events by username and source IP address.
+- Develop Splunk Search Processing Language (SPL) queries for detection.
+- Document findings and recommended investigation steps.
+- Validate expected behavior using test cases and simulated data.
 
 Tools and Technologies
 
-- Splunk
-- Linux
-- Authentication log files
-- GitHub
+Tool| Purpose
+Python 3| Automated authentication log analysis
+Linux / Kali Linux| Lab environment and command-line investigation
+Splunk SPL| Search and detection query development
+SSH authentication logs| Simulated security event data
+GitHub| Version control and project documentation
 
-Investigation Scope
+Detection Scenario
 
-The investigation focuses on authentication events, including:
+Scenario: Repeated failed SSH authentication attempts may indicate password guessing or brute-force activity.
 
-- Successful logins.
-- Failed login attempts.
-- Repeated authentication failures.
-- Potential indicators of brute-force activity.
+The Python analyzer extracts authentication events and groups them by username and source IP address. It raises an alert when the number of failed login attempts for a username and source IP combination reaches the configured threshold of 3 or more failures.
+
+The alert indicates suspicious activity requiring investigation; it does not, by itself, prove that an attack occurred.
+
+Sample Lab Results
+
+The simulated dataset contains 10 authentication events.
+
+Metric| Observed result
+Total authentication events| 10
+Failed login events| 7
+Successful login events| 3
+Failed attempts for "test" from "192.168.1.50"| 3
+Configured detection threshold| 3
+
+Expected detection: The "test" account from "192.168.1.50" triggers the repeated-failed-login alert.
+
+These results come from a controlled, simulated lab dataset and are not evidence of activity on a production network.
 
 Methodology
 
-1. Prepare sample authentication logs.
-2. Import and index the logs in Splunk.
-3. Search for failed login attempts.
-4. Analyze event patterns and identify suspicious activity.
-5. Document findings and recommend defensive measures.
+1. Log collection: Prepare sample SSH authentication events.
+2. Parsing: Extract event type, username, and source IP address using Python regular expressions.
+3. Analysis: Count failed and successful login events.
+4. Detection: Compare failed-login counts against the configured threshold.
+5. Validation: Compare script output against expected test results.
+6. Reporting: Document findings, limitations, and recommended investigation steps.
 
-Expected Deliverables
+Repository Structure
 
-- Sample authentication logs.
-- Splunk detection queries.
-- Security investigation methodology.
-- Dashboard screenshots.
-- Incident investigation report.
+SOC-Log-Analysis-Threat-Detection/
+├── README.md
+├── Logs/
+├── Scripts/
+│   └── analyze_auth_logs.py
+├── Queries/
+│   ├── Failed_login_detection
+│   └── Repeated_Failed_Login_Detection.spl
+├── Document/
+│   ├── Methodology.md
+│   └── Detection_Rules.md
+├── Reports/
+│   └── Incident_report.md
+├── Evidence/
+│   └── README.md
+└── Tests/
+    ├── test_cases.md
+    └── test_results.md
 
-Security Recommendations
+Incident Response Recommendations
 
-Depending on the investigation findings, recommended defensive measures may include:
+When repeated failed logins are detected:
 
-- Monitoring repeated authentication failures.
-- Enforcing multi-factor authentication.
-- Reviewing account lockout policies.
-- Investigating unusual login patterns.
-- Improving security logging and alerting.
+- Review the source IP address and authentication timeline.
+- Determine whether the targeted account is valid and authorized.
+- Check for successful logins from the same source after repeated failures.
+- Correlate events with other available security logs.
+- Follow organizational procedures before blocking an IP address or disabling an account.
+- Document findings and escalate confirmed or high-risk activity according to the incident response process.
 
 Limitations
 
-Repeated failed login attempts do not automatically confirm a brute-force attack. Findings must be evaluated against the available evidence and the context of the environment.
+- The dataset is simulated and does not represent a live production environment.
+- The detection relies on log formats that match the implemented parser.
+- A threshold-based alert can produce false positives and may miss activity spread across multiple source IP addresses.
+- A successful login following failed attempts requires further investigation; it does not automatically confirm account compromise.
+- Splunk query files demonstrate detection logic; their presence alone does not establish that the queries have been executed against a live Splunk instance.
+
+Future Improvements
+
+- Add automated unit tests for parsing and detection logic.
+- Generate structured JSON or CSV investigation reports.
+- Add time-window-based detection and configurable thresholds.
+- Improve error handling for malformed log entries and missing files.
+- Capture genuine lab execution evidence.
+- Validate the SPL queries against a configured Splunk lab.
 
 
- Investigation Results
+Author:
 
-This project demonstrates a structured approach to investigating suspicious authentication activity using simulated Linux authentication logs.
+Magaji Abubakar Muhammad
 
-Key Findings
+Aspiring Cybersecurity Professional | SOC Analyst in Training | Threat Detection | Incident Response
 
-- Total authentication events: 10
-- Failed login attempts: 7
-- Successful login events: 3
-- Suspicious source IP: "192.168.1.50"
-- Accounts targeted: "test", "admin", and "root"
+SOC Log Analysis & Threat Detection
 
-Threat Assessment
+A hands-on Security Operations Center (SOC) project focused on authentication log analysis, repeated failed-login detection, and incident documentation.
 
-Repeated authentication failures from a single source IP targeting multiple usernames may indicate password guessing or brute-force activity.
+Project Overview
 
-The available evidence warrants further investigation but does not independently confirm a successful attack or account compromise.
+This project demonstrates a basic SOC investigation workflow using simulated Linux SSH authentication logs. It combines Python-based log analysis, Splunk detection queries, structured testing, and incident reporting to identify potentially suspicious login activity.
 
-Recommended Security Controls
+The project is designed to demonstrate foundational skills in security monitoring, detection engineering, log analysis, and incident response.
 
-1. Enable multi-factor authentication (MFA).
-2. Monitor repeated authentication failures.
-3. Configure alerts for suspicious login patterns.
-4. Review privileged account activity.
-5. Apply appropriate rate limiting and account protection policies.
-6. Investigate suspicious source IP addresses.
+Objectives
 
- Project Documentation
+- Analyze authentication logs to identify failed and successful login attempts.
+- Detect repeated failed logins using a configurable threshold.
+- Group failed-login events by username and source IP address.
+- Develop Splunk Search Processing Language (SPL) queries for detection.
+- Document findings and recommended investigation steps.
+- Validate expected behavior using test cases and simulated data.
 
-The repository includes documentation covering:
+Tools and Technologies
 
-- SOC investigation methodology
-- Authentication-log analysis
-- Incident investigation report
-- Threat assessment and defensive recommendations
+Tool| Purpose
+Python 3| Automated authentication log analysis
+Linux / Kali Linux| Lab environment and command-line investigation
+Splunk SPL| Search and detection query development
+SSH authentication logs| Simulated security event data
+GitHub| Version control and project documentation
 
-Incident Report: "reports/incident_report.md"
+Detection Scenario
 
- Skills Demonstrated
+Scenario: Repeated failed SSH authentication attempts may indicate password guessing or brute-force activity.
 
-- Security Operations Center (SOC) fundamentals
-- Linux security-log analysis
-- Authentication-event investigation
-- Suspicious activity detection
-- Incident response documentation
-- Threat assessment
-- Defensive security controls
-- Technical reporting
+The Python analyzer extracts authentication events and groups them by username and source IP address. It raises an alert when the number of failed login attempts for a username and source IP combination reaches the configured threshold of 3 or more failures.
 
-Disclaimer
+The alert indicates suspicious activity requiring investigation; it does not, by itself, prove that an attack occurred.
 
-This project uses simulated authentication logs for educational purposes. The findings demonstrate an investigation methodology and do not represent a confirmed real-world security incident.
+Sample Lab Results
 
+The simulated dataset contains 10 authentication events.
 
-Author: Magaji Abubakar Muhammad
+Metric| Observed result
+Total authentication events| 10
+Failed login events| 7
+Successful login events| 3
+Failed attempts for "test" from "192.168.1.50"| 3
+Configured detection threshold| 3
 
-Focus: Cybersecurity | SOC Analysis | Threat Detection | Incident Response
+Expected detection: The "test" account from "192.168.1.50" triggers the repeated-failed-login alert.
 
+These results come from a controlled, simulated lab dataset and are not evidence of activity on a production network.
+
+Methodology
+
+1. Log collection: Prepare sample SSH authentication events.
+2. Parsing: Extract event type, username, and source IP address using Python regular expressions.
+3. Analysis: Count failed and successful login events.
+4. Detection: Compare failed-login counts against the configured threshold.
+5. Validation: Compare script output against expected test results.
+6. Reporting: Document findings, limitations, and recommended investigation steps.
+
+Repository Structure
+
+SOC-Log-Analysis-Threat-Detection/
+├── README.md
+├── Logs/
+├── Scripts/
+│   └── analyze_auth_logs.py
+├── Queries/
+│   ├── Failed_login_detection
+│   └── Repeated_Failed_Login_Detection.spl
+├── Document/
+│   ├── Methodology.md
+│   └── Detection_Rules.md
+├── Reports/
+│   └── Incident_report.md
+├── Evidence/
+│   └── README.md
+└── Tests/
+    ├── test_cases.md
+    └── test_results.md
+
+Incident Response Recommendations
+
+When repeated failed logins are detected:
+
+- Review the source IP address and authentication timeline.
+- Determine whether the targeted account is valid and authorized.
+- Check for successful logins from the same source after repeated failures.
+- Correlate events with other available security logs.
+- Follow organizational procedures before blocking an IP address or disabling an account.
+- Document findings and escalate confirmed or high-risk activity according to the incident response process.
+
+Limitations
+
+- The dataset is simulated and does not represent a live production environment.
+- The detection relies on log formats that match the implemented parser.
+- A threshold-based alert can produce false positives and may miss activity spread across multiple source IP addresses.
+- A successful login following failed attempts requires further investigation; it does not automatically confirm account compromise.
+- Splunk query files demonstrate detection logic; their presence alone does not establish that the queries have been executed against a live Splunk instance.
+
+Future Improvements
+
+- Add automated unit tests for parsing and detection logic.
+- Generate structured JSON or CSV investigation reports.
+- Add time-window-based detection and configurable thresholds.
+- Improve error handling for malformed log entries and missing files.
+- Capture genuine lab execution evidence.
+- Validate the SPL queries against a configured Splunk lab.
+
+Author
+
+Abu Sadeeq Magaji
+Aspiring Cybersecurity Professional | SOC Analyst in Training
 
 GitHub: https://github.com/Magaji-tech/
 
+Disclaimer
 
+This project is intended for educational and portfolio demonstration purposes. All sample authentication events are simulated. It does not demonstrate an actual compromise, and testing should only be performed in authorized environments.
 
 
