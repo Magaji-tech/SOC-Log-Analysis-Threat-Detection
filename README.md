@@ -58,6 +58,33 @@ Methodology
 5. Validation: Compare script output against expected test results.
 6. Reporting: Document findings, limitations, and recommended investigation steps.
 
+
+How to Run the Analyzer
+
+Requirements
+
+- Python 3.10 or later
+- No third-party Python packages required
+
+Steps
+
+1. Clone or download this repository.
+2. Open a terminal in the repository's root directory.
+3. Run the analyzer:
+
+python3 Scripts/analyze_auth_logs.py
+
+The script reads "logs/sample_auth.log", summarizes failed and successful authentication events, and flags username/source-IP combinations with at least three failed login attempts.
+
+Expected Results
+
+For the included simulated dataset, the expected summary is:
+
+- Total parsed events: 10
+- Failed login events: 7
+- Successful login events: 3
+- Repeated failed-login alert for "test" from "192.168.1.50" 
+
 Repository Structure
 
 SOC-Log-Analysis-Threat-Detection/
